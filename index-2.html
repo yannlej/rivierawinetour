@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RivieraWineTour – Découverte du vin sur la Côte d'Azur</title>
+  <meta name="description" content="Cours d'œnologie, dégustations accords mets & vins, grands crus avec repas d'exception et wine tours sur la Côte d'Azur. Particuliers & entreprises (team building)." />
+  <meta property="og:title" content="RivieraWineTour – Expériences autour du vin" />
+  <meta property="og:description" content="Animations œnologiques pour particuliers et entreprises sur la Côte d'Azur : cours, dégustations, repas d'exception, wine tours." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=1800&auto=format&fit=crop" />
+  <meta name="theme-color" content="#7a1c1c" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --wine:#7a1c1c; /* bordeaux élégant */
+      --gold:#c8a24d;
+      --cream:#faf7f2;
+      --ink:#1e1b1b;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream)}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    /* Header */
+    .title{ color: #7a1c1c; font: 12px tahoma;} 
+    .navbar{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.8);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #e6e1d8}
+    .container{max-width:1200px;margin:auto;padding:0 20px}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand-logo{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--wine),#3f0f0f);display:grid;place-items:center;color:#fff;font-family:Playfair Display,serif}
+    .brand-name{font-family:Playfair Display,serif;font-size:1.1rem;letter-spacing:.3px}
+    .nav-links{display:flex;gap:18px;font-weight:500}
+    .nav-links a{padding:8px 10px;border-radius:10px}
+    .nav-links a:hover{background:#efe9df}
+    /* Hero */
+    .hero{position:relative;min-height:78vh;display:grid;align-items:center}
+    .hero::before{content:"";position:absolute;inset:0;background:url('https://yannlej.github.io/rivierawinetour/boudewijn-boer-qT515JdZNy8-unsplash.jpg') center/cover no-repeat;filter:contrast(1.05) saturate(1.1)}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.25),rgba(0,0,0,.5))}
+    .hero-content{position:relative;color:#fff;padding:80px 20px}
+    .hero h1{font-family:Playfair Display,serif;font-size:clamp(32px,6vw,64px);margin:0 0 8px}
+    .hero p.lead{font-size:clamp(16px,2.4vw,20px);max-width:820px}
+    .cta{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:999px;border:1px solid transparent;font-weight:600;transition:.2s}
+    .btn-primary{background:var(--wine);color:#fff}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .btn-ghost{background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)}
+    .btn-ghost:hover{background:rgba(255,255,255,.25)}
+    /* Sections */
+    section{padding:70px 0}
+    h2.section-title{font-family:Playfair Display,serif;font-size:clamp(24px,3.6vw,40px);margin:0 0 14px}
+    .section-intro{max-width:820px;color:#5b5454}
+    .grid{display:grid;gap:24px}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media(max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+    /* Cards */
+    .card{background:#fff;border:1px solid #eee3d5;border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(123,63,0,.08)}
+    .card img{height:220px;width:100%;object-fit:cover}
+    .card-body{padding:18px}
+    .pill{display:inline-block;background:#efe9df;border:1px solid #e1d7c7;color:#6b5f4f;padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:600}
+    .features{display:grid;grid-template-columns:1.5rem auto;column-gap:10px;row-gap:8px;margin-top:10px;color:#4c4545}
+    /* Quote */
+    .quote{background:linear-gradient(135deg,#fff, #f6efe6);border:1px solid #eee3d5;border-radius:20px;padding:26px}
+    .quote p{margin:0;color:#4b4343}
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+    .gallery img{border-radius:14px;height:100%;object-fit:cover}
+    .gallery .span2{grid-row:span 2}
+    @media(max-width:900px){.gallery{grid-template-columns:1fr}}
+    /* Contact */
+    .contact{background:#fff;border-top:1px solid #eee3d5}
+    form{display:grid;gap:14px}
+    input,textarea,select{width:100%;padding:13px 14px;border:1px solid #e1d7c7;border-radius:12px;background:#fff;font:inherit}
+    textarea{min-height:120px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:700px){.form-row{grid-template-columns:1fr}}
+    .small{font-size:.9rem;color:#6a6262}
+    /* Footer */
+    footer{background:#1c1616;color:#efe6d6;padding:36px 0}
+    footer a{color:#efe6d6;text-decoration:underline}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+    @media(max-width:800px){.footer-grid{grid-template-columns:1fr}}
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(12px);transition:.6s cubic-bezier(.2,.6,.3,1)}
+    .reveal.in{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <!-- Remplacez si besoin l'email de réception dans la constante EMAIL_TO du script -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-logo">RW</span>
+        <span class="brand-name">RivieraWineTour</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#experiences">Expériences</a>
+        <a href="#entreprises">Entreprises</a>
+        <a href="#tours">Wine Tours</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  
+  <section class="hero">
+    <div class="container hero-content">
+      <h1 class="title">Découvrez, dégustez, vivez le vin<br/> sur la Côte d'Azur</h1>
+      <p class="lead">Cours d'œnologie, dégustations avec accords fromages & charcuteries, grands crus autour d'un repas d'exception et immersions dans les domaines viticoles. Pour particuliers et entreprises (team building).</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#contact">Réserver une expérience</a>
+        <a class="btn btn-ghost" href="https://instagram.com/rivierawinetour" target="_blank" rel="noopener">Nous suivre sur Instagram</a>
+      </div>
+    
+    </div>
+  </section>
+
+  <section id="experiences">
+    <div class="container">
+      <h2 class="section-title">Nos expériences phares</h2>
+      <p class="section-intro">Des ateliers pensés pour allier plaisir, pédagogie et convivialité. Chaque format peut être adapté à votre niveau et à vos envies.</p>
+
+      <div class="grid grid-3">
+        <!-- Cours d'œnologie -->
+        <article class="card reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/mauro-lima-wmjypBLF4bs-unsplash.jpg" />
+          <div class="card-body">
+            <span class="pill">Cours d'œnologie</span>
+            <h3>Apprenez à déguster comme un pro</h3>
+            <p>Arômes, tanins, cépages, régions… un atelier ludique pour comprendre et parler du vin avec assurance.</p>
+            <div class="features">
+              <span>🍇</span><span>Initiation & niveaux avancés</span>
+              <span>🕒</span><span>1h30 à 3h</span>
+              <span>👥</span><span>4 à 20 personnes</span>
+            </div>
+          </div>
+        </article>
+        <!-- Dégustation accords -->
+        <article class="card reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/alexandra-marta-0D8pkOhd5_8-unsplash.jpg" />
+          <div class="card-body">
+            <span class="pill">Accords mets & vins</span>
+            <h3>Fromages & charcuteries locales</h3>
+            <p>Une sélection gourmande pour sublimer chaque vin. Découverte des principes d'accords et des produits du terroir.</p>
+            <div class="features">
+              <span>🧀</span><span>Plateaux soignés</span>
+              <span>🥖</span><span>Produits locaux</span>
+              <span>🍷</span><span>3 à 6 vins</span>
+            </div>
+          </div>
+        </article>
+        <!-- Grands crus & repas -->
+        <article class="card reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/tim-l-productions-Kny8iSPBQ0w-unsplash.jpg" />
+          <div class="card-body">
+            <span class="pill">Grands crus & repas d'exception</span>
+            <h3>Une soirée inoubliable</h3>
+            <p>Vins prestigieux servis sur un menu gastronomique. Un voyage sensoriel orchestré par nos sommeliers.</p>
+            <div class="features">
+              <span>🍽️</span><span>Menu sur mesure</span>
+              <span>🏛️</span><span>Lieux d'exception</span>
+              <span>🕯️</span><span>Ambiance élégante</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="entreprises" style="background:linear-gradient(180deg,#fff, #f7f2ea)">
+    <div class="container">
+      <h2 class="section-title">Entreprises & Team Building</h2>
+      <p class="section-intro">Renforcez la cohésion de vos équipes grâce à des ateliers fédérateurs : quizz œnologiques, ateliers d'assemblage, défis sensoriels et dégustations commentées.</p>
+      <div class="grid grid-2" style="align-items:center">
+        <div class="reveal">
+          <div class="quote">
+            <p><strong>Formats sur mesure</strong> de 10 à 200 personnes, sur site ou dans des lieux partenaires entre Nice et Saint‑Tropez. Nous gérons logistique, verrerie, sélection des vins et animation.</p>
+          </div>
+          <ul class="section-intro" style="margin-top:14px">
+            <li>Atelier « Créez votre cuvée » (assemblage)</li>
+            <li>Blind tasting & quizz</li>
+            <li>Afterwork accords mets & vins</li>
+            <li>Masterclass thématique (rosés de Provence, bulles, millésimes…)</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/kelsey-knight-udj2tD3WKsY-unsplash.jpg" alt="Team building œnologique – collègues trinquant" style="border-radius:18px" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tours">
+    <div class="container">
+      <h2 class="section-title">Wine Tours en Provence & Côte d'Azur</h2>
+      <p class="section-intro">Partez une demi‑journée ou une journée complète à la rencontre des vignerons. Visites de chais, balades dans les vignes, dégustations commentées et déjeuner au domaine.</p>
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/vins-provence-opascal-f102622969-crtpaca-1-1920x960.jpg" alt="Vignobles de Provence au soleil" />
+          <div class="card-body">
+            <span class="pill">Provence</span>
+            <h3>Rosés et paysages iconiques</h3>
+            <p>De Bandol à Côtes de Provence, découvrez la diversité des terroirs et des styles.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/Vignobles-Clos-de-Paulilles1web.jpg" alt="Côte d'Azur – route des vignes avec vue mer" />
+          <div class="card-body">
+            <span class="pill">Côte d'Azur</span>
+            <h3>Entre mer et collines</h3>
+            <p>Des domaines confidentiels, des vues spectaculaires et des vins de caractère.</p>
+          </div>
+        </article>
+        <article class="card reveal">
+          <img src="https://yannlej.github.io/rivierawinetour/vigneron.jpg" alt="Dégustation en cave voûtée" />
+          <div class="card-body">
+            <span class="pill">Rencontres</span>
+            <h3>Au plus près des vignerons</h3>
+            <p>Des visites privilégiées et des échanges passionnants autour des cuvées.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie" style="background:#fff">
+    <div class="container">
+      <h2 class="section-title">Galerie</h2>
+      <p class="section-intro">Ambiances de nos événements entre Nice, Cannes, Antibes et Saint‑Tropez.</p>
+      <div class="gallery reveal">
+        <img class="span2" src="https://yannlej.github.io/rivierawinetour/corina-rainer-xx-qrRRNabQ-unsplash.jpg" alt="Vignes au coucher du soleil" />
+        <img src="https://yannlej.github.io/rivierawinetour/IMG_6011.JPG" alt="Plateau de fromages et charcuteries" />
+        <img src="https://yannlej.github.io/rivierawinetour/IMG_4917.jpg" alt="Dégustation de vins – verres alignés" />
+        <img src="https://yannlej.github.io/rivierawinetour/IMG_0350.JPG" alt="Ruelle ensoleillée de village provençal" />
+        <img src="https://yannlej.github.io/rivierawinetour/IMG_4309.JPG" alt="WSET" />
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact & Réservations</h2>
+      <p class="section-intro">Parlez‑nous de votre projet, nous vous proposerons une expérience sur mesure.</p>
+      <div class="grid grid-2" style="align-items:start">
+        <div class="reveal">
+          <form id="contact-form">
+            <div class="form-row">
+              <div>
+                <label for="name">Nom *</label>
+                <input id="name" name="name" required placeholder="Votre nom" />
+              </div>
+              <div>
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required placeholder="vous@exemple.com" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label for="phone">Téléphone</label>
+                <input id="phone" name="phone" placeholder="+33…" />
+              </div>
+              <div>
+                <label for="people">Nombre de personnes</label>
+                <input id="people" name="people" type="number" min="1" placeholder="10" />
+              </div>
+            </div>
+            <div>
+              <label for="type">Type d'expérience</label>
+              <select id="type" name="type">
+                <option value="oenologie">Cours d'œnologie</option>
+                <option value="accords">Dégustation accords</option>
+                <option value="grandscrus">Grands crus & repas</option>
+                <option value="tour">Wine tour</option>
+                <option value="entreprise">Entreprise / Team building</option>
+              </select>
+            </div>
+            <div>
+              <label for="message">Votre message *</label>
+              <textarea id="message" name="message" required placeholder="Dates, lieu souhaité, objectifs…"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+            <p class="small">En cliquant, votre logiciel d'email s'ouvrira avec un message pré‑rempli.</p>
+          </form>
+        </div>
+        <div class="reveal">
+          <div class="quote">
+            <p><strong>Téléphone :</strong> <a href="tel:+33617420783">+33 6 17 42 07 83</a></p>
+            <p><strong>Instagram :</strong> <a href="https://instagram.com/rivierawinetour" target="_blank" rel="noopener">@rivierawinetour</a></p>
+            <p><strong>Zone :</strong> Côte d'Azur – de Nice à Saint‑Tropez</p>
+            <p class="small">Réponse sous 24–48h ouvrées.</p>
+          </div>
+          <img src="https://yannlej.github.io/rivierawinetour/1719877646_pique-nique-vigneron-combiner-gastronomie-et-vin-en-plein-coeur-de-la-provence.jpg" alt="Vue mer & vignobles – Côte d’Azur" style="border-radius:18px;margin-top:14px" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:8px">
+          <span class="brand-logo">RW</span>
+          <span class="brand-name">RivieraWineTour</span>
+        </div>
+        <p>Expériences œnologiques pour particuliers & entreprises sur la Côte d'Azur.</p>
+      </div>
+      <div>
+        <p><strong>Nous contacter</strong></p>
+        <p>Tél : <a href="tel:+33617420783">+33 6 17 42 07 83</a></p>
+        <p>Instagram : <a href="https://instagram.com/rivierawinetour" target="_blank" rel="noopener">@rivierawinetour</a></p>
+        <p>Email : <a id="footer-mail" href="mailto:rivierawinetour@gmail.com">rivierawinetour@gmail.com</a></p>
+      </div>
+      <div>
+        <p><strong>Liens</strong></p>
+        <p><a href="#experiences">Expériences</a></p>
+        <p><a href="#tours">Wine Tours</a></p>
+        <p><a href="#contact">Réservations</a></p>
+      </div>
+    </div>
+    <div class="container" style="margin-top:16px;font-size:.85rem;opacity:.9">
+      <span>© <span id="year"></span> RivieraWineTour. Tous droits réservés.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Paramétrage rapide : modifiez l'adresse email de réception ici si besoin
+    const EMAIL_TO = 'rivierawinetour@gmail.com';
+
+    // Animation au scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } })
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Année footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Formulaire : ouvre un mail pré-rempli
+    document.getElementById('contact-form').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      const data = new FormData(this);
+      const subject = encodeURIComponent('Demande RivieraWineTour – ' + (data.get('type')||'Expérience'));
+      const body = encodeURIComponent(
+        `Nom: ${data.get('name')}\n`+
+        `Email: ${data.get('email')}\n`+
+        `Téléphone: ${data.get('phone')||''}\n`+
+        `Personnes: ${data.get('people')||''}\n`+
+        `Type: ${data.get('type')||''}\n`+
+        `Message:\n${data.get('message')}`
+      );
+      window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
