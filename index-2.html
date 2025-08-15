@@ -20,6 +20,33 @@
       --cream:#faf7f2;
       --ink:#1e1b1b;
     }
+    @media (max-width: 600px) {
+  .nav-links {
+    flex-direction: column;
+    background: rgba(250,247,242,0.95);
+    position: absolute;
+    top: 68px;
+    right: 20px;
+    left: 20px;
+    border-radius: 12px;
+    padding: 10px 0;
+    display: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--wine);
+  }
+}
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream)}
@@ -93,6 +120,7 @@
   <!-- Remplacez si besoin l'email de réception dans la constante EMAIL_TO du script -->
   <header class="navbar">
     <div class="container nav-inner">
+      <button class="nav-toggle" id="nav-toggle">☰</button>
       <a href="#" class="brand">
         <span class="brand-logo">RW</span>
         <span class="brand-name">RivieraWineTour</span>
@@ -354,9 +382,14 @@
       );
       window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
     });
+    document.getElementById('nav-toggle').addEventListener('click', function () {
+  document.querySelector('.nav-links').classList.toggle('show');
+});
+
   </script>
 </body>
 </html>
+
 
 
 
